@@ -51,14 +51,11 @@ class PySlide:
     def _create_output_folder(self):
         """Creates an output folder using the sample ID to hold the pipeline output."""
         # Ensure output folder has a trailing slash
-#         self.output = os.path.join(self.output, '')
         self.output = os.path.join(self.output, '')
 
         # Create the output folder
 #         if not os.path.exists(self.output):
 #             os.makedirs(self.output)
-        if not os.path.exists(self.output):
-            os.makedirs(self.output)
 
         # Create a folder for the sample
 #         self.img_outpath = os.path.join(self.output + self.sample_id, '')
