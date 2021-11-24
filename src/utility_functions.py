@@ -13,7 +13,7 @@ import warnings
 
 from PIL import Image
 
-
+PYHIST_LOC="/Users/slaan3/git/PyHIST"
 def check_compilation():
     """Graph segmentation compilation check.
 
@@ -24,7 +24,8 @@ def check_compilation():
         None
     """
 
-    if not os.path.isfile("src/graph_segmentation/segment"):
+#     if not os.path.isfile("src/graph_segmentation/segment"):
+    if not sys.path.append(os.path.join(os.path.dirname(__file__), "src/graph_segmentation/segment")):
 
         # If Windows, the user must compile the script manually, otherwise we attempt to compile it
         if platform.system() == "Windows":
@@ -33,7 +34,8 @@ def check_compilation():
         else:
             logging.critical("Compiling the graph segmentation algorithm...")
             try:
-                subprocess.check_call(["make"], stdout=subprocess.PIPE, cwd="src/graph_segmentation/")
+#                 subprocess.check_call(["make"], stdout=subprocess.PIPE, cwd="src/graph_segmentation/")
+                subprocess.check_call(["make"], stdout=subprocess.PIPE, cwd=sys.path.append(os.path.join(os.path.dirname(__file__), "src/graph_segmentation")))
             except Exception:
                 print("Compilation of the segmentation algorithm failed. Please compile it before running this script. Exiting.")
                 sys.exit(1)

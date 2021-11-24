@@ -40,7 +40,7 @@ class PySlide:
 
         # The slide sample ID is the filename without the extension
         self.sample_id = os.path.splitext(os.path.basename(self.svs))[0]
-
+        
         # Create the output folder for the slide
         self._create_output_folder()
 
@@ -51,14 +51,18 @@ class PySlide:
     def _create_output_folder(self):
         """Creates an output folder using the sample ID to hold the pipeline output."""
         # Ensure output folder has a trailing slash
+#         self.output = os.path.join(self.output, '')
         self.output = os.path.join(self.output, '')
 
         # Create the output folder
+#         if not os.path.exists(self.output):
+#             os.makedirs(self.output)
         if not os.path.exists(self.output):
             os.makedirs(self.output)
 
         # Create a folder for the sample
-        self.img_outpath = os.path.join(self.output + self.sample_id, '')
+#         self.img_outpath = os.path.join(self.output + self.sample_id, '')
+        self.img_outpath = os.path.join(self.sample_id, '')
         if not os.path.exists(self.img_outpath):
             os.makedirs(self.img_outpath)
 
@@ -66,7 +70,8 @@ class PySlide:
     def _create_tile_folder(self):
         """Creates a subfolder in the output folder to hold individual tiles."""
 
-        self.tile_folder = os.path.join(self.img_outpath + self.sample_id + "_tiles", '')
+#         self.tile_folder = os.path.join(self.img_outpath + self.sample_id + "_tiles", '')
+        self.tile_folder = os.path.join(self.img_outpath + self.sample_id + ".tiles", '')
         if not os.path.exists(self.tile_folder):
             os.makedirs(self.tile_folder)
 
@@ -257,7 +262,7 @@ class TileGenerator:
 
         # Information
         logging.debug("Otsu thresholding will be performed with mask downsampling of " + str(self.input_slide.mask_downsample) + "x.")
-        logging.debug("SVS level 0 dimensions: " + str(self.input_slide.slide.dimensions))
+        logging.debug("WSI level 0 dimensions: " + str(self.input_slide.slide.dimensions))
         logging.debug("Using level " + str(bdl) + " to downsample.")
         logging.debug("Downsampled size: " + str(img.shape[::-1][1:3]))
 
@@ -298,7 +303,7 @@ class TileGenerator:
 
         # Information
         logging.debug("Adaptive thresholding will be performed with mask downsampling of " + str(self.input_slide.mask_downsample) + "x.")
-        logging.debug("SVS level 0 dimensions: " + str(self.input_slide.slide.dimensions))
+        logging.debug("WSI level 0 dimensions: " + str(self.input_slide.slide.dimensions))
         logging.debug("Using level " + str(bdl) + " to downsample.")
         logging.debug("Downsampled size: " + str(img.shape[::-1][1:3]))
 
@@ -334,7 +339,7 @@ class TileGenerator:
 
         # Logging info
         logging.debug("Requested " + str(self.input_slide.mask_downsample) + "x downsampling for edge detection.")
-        logging.debug("SVS level 0 dimensions:" + str(self.input_slide.slide.dimensions))
+        logging.debug("WSI level 0 dimensions:" + str(self.input_slide.slide.dimensions))
         logging.debug("Using level " + str(bdl) + " to downsample.")
         logging.debug("Downsampled size: " + str(img.shape[::-1][1:3]))
 
