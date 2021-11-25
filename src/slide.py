@@ -517,7 +517,7 @@ class TileGenerator:
                 tile_cols.append(col)
 
                 # Save tile
-                imgtile_out = self.input_slide.tile_folder + tile_names[i] + "." + self.input_slide.format
+                imgtile_out = self.input_slide.tile_folder + tile_names[i] + ".tile.tissue." + self.input_slide.format
                 if self.input_slide.save_blank:
                     tile.save(imgtile_out)
                 else:
