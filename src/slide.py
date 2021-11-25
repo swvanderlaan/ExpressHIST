@@ -368,7 +368,8 @@ class TileGenerator:
         ts = time.time()
         edge_file = self.input_slide.img_outpath + "edges_" + self.input_slide.sample_id + ".ppm"
         ppm_file = self.input_slide.img_outpath + "segmented_" + self.input_slide.sample_id + ".ppm"
-        command = ["src/graph_segmentation/segment", str(self.input_slide.sigma), str(self.input_slide.k_const), 
+#         command = ["src/graph_segmentation/segment", str(self.input_slide.sigma), str(self.input_slide.k_const), 
+        command = [sys.path.append(os.path.join(os.path.dirname(__file__), "src/graph_segmentation/segment")), str(self.input_slide.sigma), str(self.input_slide.k_const), 
         str(self.input_slide.minimum_segmentsize), edge_file, ppm_file]
         
         process = subprocess.Popen(command, stdout=subprocess.PIPE, universal_newlines=True)
