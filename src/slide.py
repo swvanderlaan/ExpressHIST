@@ -69,7 +69,7 @@ class PySlide:
         """Creates a subfolder in the output folder to hold individual tiles."""
 
 #         self.tile_folder = os.path.join(self.img_outpath + self.sample_id + "_tiles", '')
-        self.tile_folder = os.path.join(self.img_outpath + self.sample_id + ".tiles", '')
+        self.tile_folder = os.path.join(self.img_outpath + "/" + self.sample_id + ".tiles", '')
         if not os.path.exists(self.tile_folder):
             os.makedirs(self.tile_folder)
 
